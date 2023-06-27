@@ -4,9 +4,9 @@
        xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
     <bean id="dataSource" class="org.apache.commons.dbcp2.BasicDataSource">
         <property name="driverClassName" value="com.mysql.jdbc.Driver"></property>
-        <property name="url" value="jdbc:mysql://localhost:3306/ticket_reservation?serverTimezone=Asia/Seoul&amp;characterEncoding=UTF-8"/>
+        <property name="url" value="jdbc:mysql://localhost:3306/board?serverTimezone=Asia/Seoul&amp;characterEncoding=UTF-8"/>
                   <property name="username" value="root"/>
-        <property name="password" value="hyun2002"/>
+        <property name="password" value="1234"/>
     </bean>
 
 </beans>
