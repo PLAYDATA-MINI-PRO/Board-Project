@@ -11,7 +11,7 @@
     <title>회원가입 페이지</title>
 </head>
 <body>
-<form method="post" action="signup.jsp">
+<form method="post" action="/user/signup">
     <input type="text" name="username">
     <input type="text" name="password">
     <input type="text" name="name">
