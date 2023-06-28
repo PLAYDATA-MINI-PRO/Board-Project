@@ -1,4 +1,2 @@
 package com.board.dao;
-
-public class BoardDao {
-}
+public class BoardDao {}

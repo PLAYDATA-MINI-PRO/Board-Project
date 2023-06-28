@@ -1,4 +1,3 @@
 package com.board.domain.dto;
+public class BoardDto {}
 
-public class BoardDto {
-}
