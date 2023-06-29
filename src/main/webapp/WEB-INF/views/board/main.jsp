@@ -24,10 +24,14 @@
             <li class="nav-item">
                 <a class="nav-link" href="/user/signup">회원가입</a>
             </li>
-            <% } %>
+            <li>
+                <a class="nav-link" href="/user/login">로그인</a>
+            </li>
+            <% } else { %>
             <li class="nav-item">
                 <a class="nav-link" href="/user/logout">로그아웃</a>
             </li>
+            <% } %>
             <li class="nav-item">
                 <a class="nav-link" href="/board/create">게시물 작성</a>
             </li>
