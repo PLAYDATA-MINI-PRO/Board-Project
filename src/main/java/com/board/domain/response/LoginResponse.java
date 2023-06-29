@@ -1,25 +1,24 @@
-package com.board.domain.dto;
+package com.board.domain.response;
 
-public class UserDto {
+import com.board.domain.dto.UserDto;
+
+public class LoginResponse {
     private Integer id;
+
     private String username;
-    private String password;
     private String name;
     private boolean permissoin;
 
-    public UserDto() {
+    public LoginResponse(UserDto dto) {
+        this.id = dto.getId();
+        this.username = dto.getUsername();
+        this.name = dto.getName();
+        this.permissoin = dto.isPermissoin();
     }
 
-    public UserDto(Integer id, String username, String password, String name, boolean permissoin) {
+    public LoginResponse(Integer id, String username, String name, boolean permissoin) {
         this.id = id;
         this.username = username;
-        this.password = password;
-        this.name = name;
-        this.permissoin = permissoin;
-    }
-
-    public UserDto(Integer id, String name, boolean permissoin) {
-        this.id = id;
         this.name = name;
         this.permissoin = permissoin;
     }
@@ -38,14 +37,6 @@ public class UserDto {
 
     public void setUsername(String username) {
         this.username = username;
-    }
-
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
     }
 
     public String getName() {
