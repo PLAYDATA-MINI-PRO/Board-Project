@@ -6,9 +6,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
-
 import javax.servlet.http.HttpSession;
-import java.util.List;
 
 @Controller
 public class CommentController {
@@ -17,35 +15,37 @@ public class CommentController {
     public CommentController(CommentService commentService, CommentService commentService1) {
         this.commentService = commentService1;
     }
-}
-// 겟은
+
+    // 겟은
     @GetMapping("/comment")
-    public ModelAndView showMain(@RequestParam(value = "board_id") String board_id){
+    public ModelAndView showComment() {
         ModelAndView modelAndView = new ModelAndView();
-        modelAndView.setViewName("/comment");
         modelAndView.addObject("todolist", commentService.findAll());
+        modelAndView.setViewName("/comment");
+
 
 //         투두 리스트 가져다 줘야하고
         return modelAndView;
     }
 
-    @PostMapping("/main")
-    public ModelAndView inputdata(
-            @RequestParam("content") String content,
+    @PostMapping("/comment")
+    public ModelAndView inputComment(
             ModelAndView mav,
             HttpSession session
-    ){
+    ) {
         Integer id = (Integer) session.getAttribute("id");
         // TODO insert 서비스 에다가 만들거다.
 
-        if(id != null && todoService.insert(id,content) != 0)
-            mav.setViewName("redirect:/main");
+        if(id != null && commentService.addComment(boardId, content, username) != 0)
+            mav.setViewName("redirect:/comment");
         else {
 //            mav.setViewName("redirect:/main?err=not_insert");
-            mav.setViewName("redirect:/main");
+            mav.setViewName("redirect:/comment");
             mav.addObject("err", "not_insert");
         }
         return mav;
 
+    return null;
     }
+
 }

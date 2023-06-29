@@ -1,6 +1,7 @@
 package com.board.service;
 
 import com.board.dao.CommentDao;
+import com.board.domain.dto.CommentDto;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -18,8 +19,11 @@ public class CommentService {
         return commentDao.insert(boardId, content, username);
 
     }
-    public List<TodoJoinUser> findAll(){
-        return todoMapper.findAll();
+
+    public List<CommentDto> findAll(){
+        return commentDao.findAll();
+
+
 
     }
 
