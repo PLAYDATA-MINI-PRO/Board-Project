@@ -66,7 +66,7 @@
             text-decoration: none;
             font-weight: bold;
         }
-        
+
     </style>
     <script>
         // 게시물 클릭 시 상세 페이지로 이동하는 함수
