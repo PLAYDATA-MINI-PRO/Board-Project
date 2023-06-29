@@ -40,10 +40,9 @@ public class BoardController {
 
         if(keyword!=null && !keyword.equals("")) {   // 파라미터 keyword가 null과 ""이 아닐 떄
             List<SearchDto> bykeyword = searchService.findByKeyword(keyword,condition); // keyword를 가지고 service로 전달
-            modelAndView.addObject("boardlist", bykeyword); // 받아온 값을 리퀘스트로 저장 전송
+            modelAndView.addObject("boardList", bykeyword); // 받아온 값을 리퀘스트로 저장 전송
+            System.out.println(bykeyword);
 
-//            List<TodoJoinUser> byKeyword = todoService.findByKeyword(keyword);
-//            modelAndView.addObject("todolist", byKeyword);
         }else{ // keyword가 파라미터에 없으면 전체리스트 나타나도록
             modelAndView.addObject("boardList", searchService.findAll());
         }

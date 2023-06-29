@@ -11,6 +11,20 @@ public class SearchDto {
     private String category;
     private Timestamp createAt ;
 
+//    toString 은 값을 제대로 받아오는지 확인하기 위해서 만듬
+//    @Override
+//    public String toString() {
+//        return "SearchDto{" +
+//                "username='" + username + '\'' +
+//                ", name='" + name + '\'' +
+//                ", id=" + id +
+//                ", title='" + title + '\'' +
+//                ", content='" + content + '\'' +
+//                ", category='" + category + '\'' +
+//                ", createAt=" + createAt +
+//                '}';
+//    }
+
     public String getUsername() {
         return username;
     }

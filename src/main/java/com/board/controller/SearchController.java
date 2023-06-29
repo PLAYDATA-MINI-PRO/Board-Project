@@ -28,6 +28,7 @@ public class SearchController {
         if(keyword!=null && !keyword.equals("")) {   // 파라미터 keyword가 null과 ""이 아닐 떄
             List<SearchDto> bykeyword = searchService.findByKeyword(keyword,condition); // keyword를 가지고 service로 전달
             modelAndView.addObject("boardlist", bykeyword); // 받아온 값을 리퀘스트로 저장 전송
+            modelAndView.addObject("test", "test"); // 받아온 값을 리퀘스트로 저장 전송
 
 //            List<TodoJoinUser> byKeyword = todoService.findByKeyword(keyword);
 //            modelAndView.addObject("todolist", byKeyword);

@@ -43,7 +43,10 @@ public class BoardDao {
 
     public BoardDto findBoardById(Integer id) {
         String sql = "select b.id, b.title, b.category, b.username, b.content, b.create_at from board.board as b where id = ?";
+        System.out.println(sql);
+        System.out.println(id);
         return jdbcTemplate.queryForObject(sql, getBoardDtoRowMapper(), id);
+
     }
 
     public int update(String title, String category, String content, Integer id) {
