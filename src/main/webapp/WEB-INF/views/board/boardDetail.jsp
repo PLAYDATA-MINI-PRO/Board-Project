@@ -20,23 +20,42 @@
         <button class="btn btn-primary" onclick="main(${board.id})">메인 페이지</button>
     </div>
 </div>
-    <div>
-        <form action="/board/${board.id}" method="post">
-            <input type="text" name="content" placeholder="content을 입력해주세요">
-            <input type="text" name="username" placeholder="usernam을 입력해주세요">
-            <input type="submit">
-            <div>
-                <table>
-                    <tr>
-                        <td>닉네임</td>
-                        <td>내용</td>
-                    </tr>
 
-                    <c:forEach items="${commentlist}" var = "commentlist"></c:forEach>
-                </table>
+<div class="container mt-4">
+    <form action="/board/${board.id}" method="post">
+        <div class="form-row">
+            <div class="col">
+                <input type="text" class="form-control" name="content" placeholder="댓글을 입력해주세요">
             </div>
-        </form>
-    </div>
+            <div class="col">
+                <input type="text" class="form-control" name="username" placeholder="닉네임을 입력해주세요">
+            </div>
+            <div class="col">
+                <button type="submit" class="btn btn-primary">댓글 등록</button>
+            </div>
+        </div>
+    </form>
+</div>
+
+<div class="container mt-4">
+    <table class="table">
+        <thead>
+        <tr>
+            <th>닉네임</th>
+            <th>내용</th>
+        </tr>
+        </thead>
+        <tbody>
+        <c:forEach items="${commentList}" var="comment">
+            <tr>
+                <td>${comment.username}</td>
+                <td>${comment.content}</td>
+            </tr>
+        </c:forEach>
+        </tbody>
+    </table>
+</div>
+
 <script>
     // 게시물 수정 함수
     function editBoard(boardId) {

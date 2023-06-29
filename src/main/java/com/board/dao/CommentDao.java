@@ -18,7 +18,7 @@ public class CommentDao {
     //DI,디펜 의존성 주입한다, 그리고 new JdbcTemplate(dataSource);를 쓰기 전까지는 스프링을 쓸 수 없다.
 
     public List<CommentDto> findAll() {
-        String sql = "select b.id, b.title, b.category, b.username, b.content, b.create_at from board.board as b";
+        String sql = "select c.id, c.board_id, c.content, c.username, c.create_at from board.comment as c";
         List<CommentDto> boardDtoList = jdbcTemplate.query(sql, getCommentDtoRowMapper());
         return boardDtoList;
     }
@@ -30,7 +30,7 @@ public class CommentDao {
                         rs.getInt("board_id"),
                         rs.getString("content"),
                         rs.getString("username"),
-                        rs.getTimestamp("created_at")
+                        rs.getTimestamp("create_at")
                 );
     }
 

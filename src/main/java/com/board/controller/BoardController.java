@@ -1,7 +1,9 @@
 package com.board.controller;
 
 import com.board.domain.dto.BoardDto;
+import com.board.domain.dto.CommentDto;
 import com.board.service.BoardService;
+import com.board.service.CommentService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -10,17 +12,19 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
-import javax.servlet.http.HttpSession;
+import java.util.List;
 
 @Controller
 public class BoardController {
 
     // 의존성 주입
     private final BoardService boardService;
+    private final CommentService commentService;
 
     // BoardService 를 주입받기 위한 생성자
-    public BoardController(BoardService boardService) {
+    public BoardController(BoardService boardService, CommentService commentService) {
         this.boardService = boardService;
+        this.commentService = commentService;
     }
 
     // GET 요청을 /board 경로로 처리
@@ -70,6 +74,10 @@ public class BoardController {
     public String showBoardDetail(@PathVariable("id") Integer id, Model model) {
         BoardDto boardDto = boardService.findBoardById(id);
         model.addAttribute("board", boardDto);
+
+        List<CommentDto> commentList = commentService.findAll();
+        model.addAttribute("commentList", commentList);
+
         return "/board/boardDetail";
     }
 

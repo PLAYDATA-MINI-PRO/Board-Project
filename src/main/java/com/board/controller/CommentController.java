@@ -15,36 +15,21 @@ import java.util.List;
 public class CommentController {
     private final CommentService commentService;
 
-    public CommentController(CommentService commentService, CommentService commentService1) {
-        this.commentService = commentService1;
+    public CommentController(CommentService commentService) {
+        this.commentService = commentService;
     }
 
-    // 겟은
-    @GetMapping("/board/{id}")
-    public ModelAndView showComment(
-            @RequestParam(value = "commentlist", required = false) String commentlist
-    ) {
-        ModelAndView modelAndView = new ModelAndView();
-        modelAndView.setViewName("/board/{id}");
-
-        if (commentlist != null && !commentlist.equals("")) {
-            List<CommentDto> byComment = commentService.addComment(commentlist);
-            modelAndView.addObject("commentlist", byComment);
-        } else {
-            modelAndView.addObject("commentlist", commentService.findAll());
-        }
-        return modelAndView;
-    }
-
-
-
-//        modelAndView.addObject("todolist", commentService.findAll());
-//        modelAndView.setViewName("/comment");
+//    @GetMapping("/boardList")
+//    public ModelAndView showAllComment() {
+//        ModelAndView modelAndView = new ModelAndView();
+//        modelAndView.setViewName("/board");
 //
+//        List<CommentDto> commentList = commentService.findAll();
+//        modelAndView.addObject("commentList", commentList);
 //
-////         투두 리스트 가져다 줘야하고
 //        return modelAndView;
 //    }
+//
 
     @PostMapping("/board/{id}")
     public ModelAndView inputComment(
@@ -55,16 +40,13 @@ public class CommentController {
             HttpSession session
     ) {
         // TODO insert 서비스 에다가 만들거다.
-        if(commentService.addComment(bid, content, username) != 0)
-            mav.setViewName("redirect:/board/");
+        if (commentService.addComment(bid, content, username) != 0)
+            mav.setViewName("redirect:/board/" + bid);
         else {
-//            mav.setViewName("redirect:/main?err=not_insert");
             mav.setViewName("redirect:/board");
             mav.addObject("err", "not_insert");
         }
         return mav;
-
-
     }
 
 }
