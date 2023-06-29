@@ -14,10 +14,10 @@
     <div class="collapse navbar-collapse" id="navbarNav">
         <ul class="navbar-nav">
             <li class="nav-item">
-                <a class="nav-link" href="#">회원가입</a>
+                <a class="nav-link" href="/user/signup">회원가입</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="#">로그인</a>
+                <a class="nav-link" href="/user/login">로그인</a>
             </li>
             <li class="nav-item">
                 <a class="nav-link" href="/board/list">게시물 목록</a>

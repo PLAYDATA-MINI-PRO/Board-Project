@@ -24,7 +24,7 @@ public class BoardController {
     }
 
     // GET 요청을 /board 경로로 처리
-    @GetMapping("/board")
+    @GetMapping("/main")
     public ModelAndView showMain() {
 
         // ModelAndView: 컨트롤러 처리 결과 후 응답할 view 와 view 의 전달 값을 저장 및 전달하는 클래스
@@ -94,7 +94,7 @@ public class BoardController {
         // 문자열로 받은 값들을 boardService.insert 메서드의 요소로 넘겨주고 데이터베이스에 insert
         // 반환값이 0이 아닌 경우에 게시판 목록을 보여주는 /board 경로로 이동
         if (boardService.insert(title, category, content, username) != 0) {
-            mav.setViewName("redirect:/board");
+            mav.setViewName("redirect:/main");
         }
 
         return mav;
@@ -116,7 +116,7 @@ public class BoardController {
     @PostMapping("/board/delete/{id}")
     public ModelAndView boardDelete(@PathVariable("id") Integer id, ModelAndView mav) {
         if (boardService.delete(id) != 0) {
-            mav.setViewName("redirect:/board");
+            mav.setViewName("redirect:/main");
         }
         return mav;
     }

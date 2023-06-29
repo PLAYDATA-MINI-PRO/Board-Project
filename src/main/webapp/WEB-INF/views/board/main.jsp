@@ -12,18 +12,21 @@
 </head>
 <body>
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
-    <a class="navbar-brand" href="#">게시판 프로그램</a>
+    <a class="navbar-brand" href="/main">게시판 프로그램</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
             aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" id="navbarNav">
         <ul class="navbar-nav">
+            <%-- 로그인 상태에 따라 회원가입 링크 표시 여부 결정 --%>
+            <% if (session.getAttribute("id") == null) { %>
             <li class="nav-item">
-                <a class="nav-link" href="#">회원가입</a>
+                <a class="nav-link" href="/user/signup">회원가입</a>
             </li>
+            <% } %>
             <li class="nav-item">
-                <a class="nav-link" href="#">로그인</a>
+                <a class="nav-link" href="/user/login">로그인</a>
             </li>
             <li class="nav-item">
                 <a class="nav-link" href="/board/create">게시물 작성</a>

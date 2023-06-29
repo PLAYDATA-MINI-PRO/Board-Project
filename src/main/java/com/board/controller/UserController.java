@@ -19,31 +19,32 @@ public class UserController {
     }
 
     @GetMapping("/user/signup")
-    public String getSignup(){
+    public String getSignup() {
         return "/user/signup";
     }
+
     @GetMapping("/user/login")
-    public String getLogin(){
+    public String getLogin() {
         return "/user/login";
     }
+
     @PostMapping("/user/signup")
-    public ModelAndView signupPost(@ModelAttribute SignupRequest signupRequest,ModelAndView mv) throws Exception {
-        if(userService.signup(signupRequest) != 0){
+    public ModelAndView signupPost(@ModelAttribute SignupRequest signupRequest, ModelAndView mv) throws Exception {
+        if (userService.signup(signupRequest) != 0) {
             mv.setViewName("redirect:/user/login");
-        }
-        else {
-         mv.setViewName("redirect:/user/signup");
+        } else {
+            mv.setViewName("redirect:/user/signup");
         }
         return mv;
     }
+
     @PostMapping("/user/login")
-    public ModelAndView loginPost(@ModelAttribute LoginRequset loginRequset,ModelAndView mv){
+    public ModelAndView loginPost(@ModelAttribute LoginRequset loginRequset, ModelAndView mv) {
         LoginResponse user = (userService.login(loginRequset));
-        if(user != null){
+        if (user != null) {
             mv.setViewName("redirect:/user/login");
-        }
-        else {
-            mv.setViewName("redirect:/");
+        } else {
+            mv.setViewName("redirect:/main");
         }
         return mv;
     }

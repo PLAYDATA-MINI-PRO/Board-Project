@@ -1,10 +1,3 @@
-<%--
-  Created by IntelliJ IDEA.
-  User: sujeong
-  Date: 2023/06/28
-  Time: 6:01 PM
-  To change this template use File | Settings | File Templates.
---%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
@@ -66,7 +59,7 @@
             text-decoration: none;
             font-weight: bold;
         }
-        
+
     </style>
     <script>
         // 게시물 클릭 시 상세 페이지로 이동하는 함수
@@ -85,8 +78,8 @@
         <% if (session.getAttribute("username") != null) { %>
         <a href="/logout">로그아웃</a>
         <% } else { %>
-        <a href="/login">로그인</a> |
-        <a href="/register">회원가입</a>
+        <a href="/user/login">로그인</a> |
+        <a href="/user/signup">회원가입</a>
         <% } %>
     </div>
     <div class="title">

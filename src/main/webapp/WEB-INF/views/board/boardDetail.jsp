@@ -41,7 +41,7 @@
             xhr.onload = function () {
                 if (xhr.status === 200) {
                     // 요청이 성공적으로 처리됐을 경우, 리다이렉트 등 필요한 작업 수행
-                    location.href = "/board";
+                    location.href = "/main";
                 } else {
                     // 요청이 실패했을 경우, 오류 처리
                     console.error("게시물 삭제 요청 실패");
@@ -54,6 +54,6 @@
     }
 
     function main(boardId) {
-        location.href = "/board";
+        location.href = "/main";
     }
 </script>
