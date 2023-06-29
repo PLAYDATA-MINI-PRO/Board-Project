@@ -1,8 +1,6 @@
 package com.board.domain.dto;
-public class BoardDto {}
 
-<<<<<<< HEAD
-=======
+
 import java.sql.Timestamp;
 
 public class BoardDto {
@@ -46,4 +44,4 @@ public class BoardDto {
         return createAt;
     }
 }
->>>>>>> feature/sj
+

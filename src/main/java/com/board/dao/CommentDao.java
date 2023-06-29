@@ -34,12 +34,12 @@ public class CommentDao {
                 );
     }
 
-    public int insert(Integer uid, String content, String username) {
+    public int insert(Integer bid, String content, String username) {
         String sql = "insert into comment (board_id, content, username)" +
                 "values (?, ?, ? )";
         // 컨텐츠가 필요, 유저 id가 필요하다.
         try {
-            return jdbcTemplate.update(sql, uid, content ,username);
+            return jdbcTemplate.update(sql, bid, content ,username);
         } catch (Exception e) {
             return 0;
         }

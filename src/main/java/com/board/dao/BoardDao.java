@@ -1,7 +1,4 @@
 package com.board.dao;
-<<<<<<< HEAD
-public class BoardDao {}
-=======
 
 import com.board.domain.dto.BoardDto;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -59,4 +56,4 @@ public class BoardDao {
         return jdbcTemplate.update(sql, id);
     }
 }
->>>>>>> feature/sj
+

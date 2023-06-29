@@ -1,3 +1,4 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page import="com.board.domain.dto.BoardDto" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
@@ -19,7 +20,23 @@
         <button class="btn btn-primary" onclick="main(${board.id})">메인 페이지</button>
     </div>
 </div>
+    <div>
+        <form action="/board/${board.id}" method="post">
+            <input type="text" name="content" placeholder="content을 입력해주세요">
+            <input type="text" name="username" placeholder="usernam을 입력해주세요">
+            <input type="submit">
+            <div>
+                <table>
+                    <tr>
+                        <td>닉네임</td>
+                        <td>내용</td>
+                    </tr>
 
+                    <c:forEach items="${commentlist}" var = "commentlist"></c:forEach>
+                </table>
+            </div>
+        </form>
+    </div>
 <script>
     // 게시물 수정 함수
     function editBoard(boardId) {
