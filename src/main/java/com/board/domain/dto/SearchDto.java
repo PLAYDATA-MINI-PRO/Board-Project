@@ -1,5 +1,7 @@
 package com.board.domain.dto;
 
+import java.sql.Timestamp;
+
 public class SearchDto {
     private String username;
     private String name;
@@ -7,18 +9,7 @@ public class SearchDto {
     private String title;
     private String content;
     private String category;
-    private String create_at;
-
-
-    public SearchDto(String username, String name, int id, String title, String content, String category, String create_at) {
-        this.username = username;
-        this.name = name;
-        this.id = id;
-        this.title = title;
-        this.content = content;
-        this.category = category;
-        this.create_at = create_at;
-    }
+    private Timestamp createAt ;
 
     public String getUsername() {
         return username;
@@ -68,11 +59,21 @@ public class SearchDto {
         this.category = category;
     }
 
-    public String getCreate_at() {
-        return create_at;
+    public Timestamp getCreateAt() {
+        return createAt;
     }
 
-    public void setCreate_at(String create_at) {
-        this.create_at = create_at;
+    public void setCreateAt(Timestamp createAt) {
+        this.createAt = createAt;
+    }
+
+    public SearchDto(String username, String name, int id, String title, String content, String category, Timestamp createAt) {
+        this.username = username;
+        this.name = name;
+        this.id = id;
+        this.title = title;
+        this.content = content;
+        this.category = category;
+        this.createAt = createAt;
     }
 }

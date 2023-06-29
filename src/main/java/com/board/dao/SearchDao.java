@@ -56,7 +56,6 @@ public class SearchDao {
 
         String keywordPattern = "%"+keyword+"%";
         List<SearchDto> SearchDto = jdbcTemplate.query(sql, getSearchDtoRowMapper(), keywordPattern);
-
         return SearchDto;
     }
 
@@ -69,7 +68,7 @@ public class SearchDao {
                         rs.getString("title"),
                         rs.getString("content"),
                         rs.getString("category"),
-                        rs.getString("create_at")
+                        rs.getTimestamp("create_at")
                 );
     }
 

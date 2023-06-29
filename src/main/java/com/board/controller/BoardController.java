@@ -1,7 +1,9 @@
 package com.board.controller;
 
 import com.board.domain.dto.BoardDto;
+import com.board.domain.dto.SearchDto;
 import com.board.service.BoardService;
+import com.board.service.SearchService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -11,32 +13,44 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpSession;
+import java.util.List;
 
 @Controller
 public class BoardController {
 
     // 의존성 주입
     private final BoardService boardService;
+    private final SearchService searchService;
 
     // BoardService 를 주입받기 위한 생성자
-    public BoardController(BoardService boardService) {
+    public BoardController(BoardService boardService, SearchService searchService) {
         this.boardService = boardService;
+        this.searchService = searchService;
     }
 
     // GET 요청을 /board 경로로 처리
     @GetMapping("/main")
-    public ModelAndView showMain() {
-
-        // ModelAndView: 컨트롤러 처리 결과 후 응답할 view 와 view 의 전달 값을 저장 및 전달하는 클래스
+    public ModelAndView showMain(
+            @RequestParam(value = "keyword", required = false) String keyword,
+            @RequestParam(value = "condition", required = false) String condition,
+            @RequestParam(value = "sort", required = false) String sort
+    ){
         ModelAndView modelAndView = new ModelAndView();
+        modelAndView.setViewName("/board/main"); // search.jsp로 연결
 
-        // 응답할 view 이름을 /board/main 으로 지정
-        modelAndView.setViewName("/board/main");
+        if(keyword!=null && !keyword.equals("")) {   // 파라미터 keyword가 null과 ""이 아닐 떄
+            List<SearchDto> bykeyword = searchService.findByKeyword(keyword,condition); // keyword를 가지고 service로 전달
+            modelAndView.addObject("boardlist", bykeyword); // 받아온 값을 리퀘스트로 저장 전송
 
-        // view에 모든 게시물 데이터를 boardList 라는 이름으로 값 전달
-        modelAndView.addObject("boardList", boardService.findAll());
+//            List<TodoJoinUser> byKeyword = todoService.findByKeyword(keyword);
+//            modelAndView.addObject("todolist", byKeyword);
+        }else{ // keyword가 파라미터에 없으면 전체리스트 나타나도록
+            modelAndView.addObject("boardList", searchService.findAll());
+        }
         return modelAndView;
     }
+
+
 
     @GetMapping("/board/list")
     public ModelAndView showBoard() {
