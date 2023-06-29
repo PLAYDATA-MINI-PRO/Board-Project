@@ -20,13 +20,13 @@
     <div class="collapse navbar-collapse" id="navbarNav">
         <ul class="navbar-nav">
             <%-- 로그인 상태에 따라 회원가입 링크 표시 여부 결정 --%>
-            <% if (session.getAttribute("id") == null) { %>
+            <% if (session.getAttribute("username") == null) { %>
             <li class="nav-item">
                 <a class="nav-link" href="/user/signup">회원가입</a>
             </li>
             <% } %>
             <li class="nav-item">
-                <a class="nav-link" href="/user/login">로그인</a>
+                <a class="nav-link" href="/user/logout">로그아웃</a>
             </li>
             <li class="nav-item">
                 <a class="nav-link" href="/board/create">게시물 작성</a>

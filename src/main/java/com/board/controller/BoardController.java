@@ -86,12 +86,13 @@ public class BoardController {
             @RequestParam("title") String title,
             @RequestParam("category") String category,
             @RequestParam("content") String content,
-            @RequestParam("username") String username
+            @RequestParam("username") String username,
+            HttpSession session
     ) {
         ModelAndView mav = new ModelAndView();
 
         // 요청 파라미터 값들을 문자열로 받고,
-        // 문자열로 받은 값들을 boardService.insert 메서드의 요소로 넘겨주고 데이터베이스에 insert
+        // 문자열로 받은 값들과 세션에서 가져온 사용자명을 boardService.insert 메서드의 요소로 넘겨주고 데이터베이스에 insert
         // 반환값이 0이 아닌 경우에 게시판 목록을 보여주는 /board 경로로 이동
         if (boardService.insert(title, category, content, username) != 0) {
             mav.setViewName("redirect:/main");
@@ -99,6 +100,7 @@ public class BoardController {
 
         return mav;
     }
+
 
     @PostMapping("/board/update")
     public ModelAndView boardUpdate(

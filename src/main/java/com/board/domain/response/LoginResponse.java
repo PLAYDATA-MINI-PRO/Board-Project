@@ -4,12 +4,23 @@ import com.board.domain.dto.UserDto;
 
 public class LoginResponse {
     private Integer id;
+
+    private String username;
     private String name;
     private boolean permissoin;
-    public LoginResponse(UserDto dto){
+
+    public LoginResponse(UserDto dto) {
         this.id = dto.getId();
+        this.username = dto.getUsername();
         this.name = dto.getName();
         this.permissoin = dto.isPermissoin();
+    }
+
+    public LoginResponse(Integer id, String username, String name, boolean permissoin) {
+        this.id = id;
+        this.username = username;
+        this.name = name;
+        this.permissoin = permissoin;
     }
 
     public Integer getId() {
@@ -18,6 +29,14 @@ public class LoginResponse {
 
     public void setId(Integer id) {
         this.id = id;
+    }
+
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
     }
 
     public String getName() {
@@ -33,12 +52,6 @@ public class LoginResponse {
     }
 
     public void setPermissoin(boolean permissoin) {
-        this.permissoin = permissoin;
-    }
-
-    public LoginResponse(Integer id, String name, boolean permissoin) {
-        this.id = id;
-        this.name = name;
         this.permissoin = permissoin;
     }
 }

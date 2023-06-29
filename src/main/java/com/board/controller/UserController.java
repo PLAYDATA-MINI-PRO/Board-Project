@@ -10,6 +10,8 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.ModelAndView;
 
+import javax.servlet.http.HttpSession;
+
 @Controller
 public class UserController {
     private final UserService userService;
@@ -38,13 +40,17 @@ public class UserController {
         return mv;
     }
 
+
     @PostMapping("/user/login")
-    public ModelAndView loginPost(@ModelAttribute LoginRequset loginRequset, ModelAndView mv) {
+    public ModelAndView loginPost(@ModelAttribute LoginRequset loginRequset, ModelAndView mv, HttpSession session) {
         LoginResponse user = (userService.login(loginRequset));
         if (user != null) {
-            mv.setViewName("redirect:/user/login");
-        } else {
+
+            session.setAttribute("username", user.getUsername());
+            session.setAttribute("name", user.getName());
             mv.setViewName("redirect:/main");
+        } else {
+            mv.setViewName("redirect:/user/login");
         }
         return mv;
     }
