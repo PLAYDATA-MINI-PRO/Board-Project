@@ -1,8 +1,8 @@
 package com.board.dao;
 
 import com.board.domain.dto.UserDto;
-import com.board.domain.requset.LoginRequset;
-import com.board.domain.requset.SignupRequest;
+import com.board.domain.request.LoginRequest;
+import com.board.domain.request.SignupRequest;
 import com.board.domain.response.LoginResponse;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Component;
@@ -23,7 +23,7 @@ public class UserDao {
         return jdbcTemplate.update(sql, signupRequest.getUsername(), signupRequest.getPassword(), signupRequest.getName());
     }
 
-    public LoginResponse login(LoginRequset loginRequset) {
+    public LoginResponse login(LoginRequest loginRequest) {
         String sql = "select * from user where username = ? and password = ?";
         UserDto userDto = jdbcTemplate.queryForObject(sql, (rs, rowNum) ->
                 new UserDto(
@@ -32,7 +32,7 @@ public class UserDao {
                         rs.getString("password"),
                         rs.getString("name"),
                         rs.getBoolean("permission")
-                ), loginRequset.getUsername(),loginRequset.getPassword());
+                ), loginRequest.getUsername(), loginRequest.getPassword());
         return new LoginResponse(Objects.requireNonNull(userDto));
     }
 

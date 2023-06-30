@@ -1,13 +1,11 @@
 package com.board.service;
 
 import com.board.dao.UserDao;
-import com.board.domain.requset.LoginRequset;
-import com.board.domain.requset.SignupRequest;
+import com.board.domain.request.LoginRequest;
+import com.board.domain.request.SignupRequest;
 import com.board.domain.response.LoginResponse;
 import org.springframework.stereotype.Service;
 
-import javax.sql.DataSource;
-import java.sql.SQLException;
 import java.util.regex.Pattern;
 
 @Service
@@ -27,9 +25,9 @@ public class UserService {
     }
 
 
-    public LoginResponse login(LoginRequset loginRequset) {
+    public LoginResponse login(LoginRequest loginRequest) {
         try {
-            return userDao.login(loginRequset);
+            return userDao.login(loginRequest);
         } catch (Exception e) {
             return null;
         }

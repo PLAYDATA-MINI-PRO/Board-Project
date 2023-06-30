@@ -1,4 +1,4 @@
-package com.board.domain.requset;
+package com.board.domain.request;
 
 public class SignupRequest {
     private String username;

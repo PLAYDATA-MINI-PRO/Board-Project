@@ -1,7 +1,7 @@
 package com.board.controller;
 
-import com.board.domain.requset.LoginRequset;
-import com.board.domain.requset.SignupRequest;
+import com.board.domain.request.LoginRequest;
+import com.board.domain.request.SignupRequest;
 import com.board.domain.response.LoginResponse;
 import com.board.service.UserService;
 import org.springframework.stereotype.Controller;
@@ -48,8 +48,8 @@ public class UserController {
 
 
     @PostMapping("/user/login")
-    public ModelAndView loginPost(@ModelAttribute LoginRequset loginRequset, ModelAndView mv, HttpSession session) {
-        LoginResponse user = (userService.login(loginRequset));
+    public ModelAndView loginPost(@ModelAttribute LoginRequest loginRequest, ModelAndView mv, HttpSession session) {
+        LoginResponse user = (userService.login(loginRequest));
         if (user != null) {
 
             session.setAttribute("username", user.getUsername());

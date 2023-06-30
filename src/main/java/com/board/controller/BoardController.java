@@ -56,20 +56,6 @@ public class BoardController {
     }
 
 
-    @GetMapping("/board/list")
-    public ModelAndView showBoard() {
-
-        // ModelAndView: 컨트롤러 처리 결과 후 응답할 view 와 view 의 전달 값을 저장 및 전달하는 클래스
-        ModelAndView modelAndView = new ModelAndView();
-
-        // 응답할 view 이름을 /board/main 으로 지정
-        modelAndView.setViewName("/board/boardListMain");
-
-        // view에 모든 게시물 데이터를 boardList 라는 이름으로 값 전달
-        modelAndView.addObject("boardList", boardService.findAll());
-        return modelAndView;
-    }
-
     @GetMapping("/board/create")
     public ModelAndView showBoardCreate() {
 
@@ -77,7 +63,7 @@ public class BoardController {
         ModelAndView modelAndView = new ModelAndView();
 
         // 응답할 view 이름을 /board/main 으로 지정
-        modelAndView.setViewName("/board/board");
+        modelAndView.setViewName("/board/boardCreate");
 
         // view에 모든 게시물 데이터를 boardList 라는 이름으로 값 전달
 //        modelAndView.addObject("boardList", boardService.findAll());
@@ -90,7 +76,6 @@ public class BoardController {
 
         BoardDto boardDto = boardService.findBoardById(id);
         model.addAttribute("board", boardDto);
-        model.addAttribute("boardId", boardDto.getUsername());
 
         List<CommentDto> commentList = commentService.findAll();
         model.addAttribute("commentList", commentList);
