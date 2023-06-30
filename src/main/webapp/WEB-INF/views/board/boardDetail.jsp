@@ -41,23 +41,31 @@
     <p>댓글을 작성하려면 로그인이 필요합니다.</p>
     <% } %>
 </div>
+
 <div class="container mt-4">
-    <table class="table">
-        <thead>
-        <tr>
-            <th>닉네임</th>
-            <th>내용</th>
-        </tr>
-        </thead>
-        <tbody>
-        <c:forEach items="${commentList}" var="comment">
+    <%-- Display the comments if there are any --%>
+    <c:if test="${not empty commentList}">
+        <table class="table">
+            <thead>
             <tr>
-                <td>${comment.name}</td>
-                <td>${comment.content}</td>
+                <th>닉네임</th>
+                <th>내용</th>
             </tr>
-        </c:forEach>
-        </tbody>
-    </table>
+            </thead>
+            <tbody>
+            <c:forEach items="${commentList}" var="comment">
+                <tr>
+                    <td>${comment.name}</td>
+                    <td>${comment.content}</td>
+                </tr>
+            </c:forEach>
+            </tbody>
+        </table>
+    </c:if>
+    <%-- Display a message if there are no comments --%>
+    <c:if test="${empty commentList}">
+        <p>댓글이 없습니다.</p>
+    </c:if>
 </div>
 
 

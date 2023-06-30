@@ -20,8 +20,8 @@ public class CommentService {
 
     }
 
-    public List<CommentDto> findAll() {
-        return commentDao.findAll();
+    public List<CommentDto> findAll(Integer id) {
+        return commentDao.findAll(id);
 
 
     }
