@@ -30,6 +30,12 @@ public class UserController {
         return "/user/login";
     }
 
+    @GetMapping("/user/logout")
+    public String logout(HttpSession session) {
+        session.invalidate();
+        return "redirect:/main";
+    }
+
     @PostMapping("/user/signup")
     public ModelAndView signupPost(@ModelAttribute SignupRequest signupRequest, ModelAndView mv) throws Exception {
         if (userService.signup(signupRequest) != 0) {
