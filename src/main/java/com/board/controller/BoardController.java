@@ -1,8 +1,10 @@
 package com.board.controller;
 
 import com.board.domain.dto.BoardDto;
+import com.board.domain.dto.CommentDto;
 import com.board.domain.dto.SearchDto;
 import com.board.service.BoardService;
+import com.board.service.CommentService;
 import com.board.service.SearchService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -19,14 +21,23 @@ import java.util.List;
 public class BoardController {
 
     // 의존성 주입
+
+
+    // BoardService 를 주입받기 위한 생성자
+
     private final BoardService boardService;
     private final SearchService searchService;
 
-    // BoardService 를 주입받기 위한 생성자
-    public BoardController(BoardService boardService, SearchService searchService) {
+    private final CommentService commentService;
+
+    public BoardController(BoardService boardService, SearchService searchService, CommentService commentService) {
         this.boardService = boardService;
         this.searchService = searchService;
+        this.commentService = commentService;
     }
+
+    // BoardService 를 주입받기 위한 생성자
+
 
     // GET 요청을 /board 경로로 처리
     @GetMapping("/main")
@@ -34,21 +45,20 @@ public class BoardController {
             @RequestParam(value = "keyword", required = false) String keyword,
             @RequestParam(value = "condition", required = false) String condition,
             @RequestParam(value = "sort", required = false) String sort
-    ){
+    ) {
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.setViewName("/board/main"); // search.jsp로 연결
 
-        if(keyword!=null && !keyword.equals("")) {   // 파라미터 keyword가 null과 ""이 아닐 떄
-            List<SearchDto> bykeyword = searchService.findByKeyword(keyword,condition); // keyword를 가지고 service로 전달
+        if (keyword != null && !keyword.equals("")) {   // 파라미터 keyword가 null과 ""이 아닐 떄
+            List<SearchDto> bykeyword = searchService.findByKeyword(keyword, condition); // keyword를 가지고 service로 전달
             modelAndView.addObject("boardList", bykeyword); // 받아온 값을 리퀘스트로 저장 전송
             System.out.println(bykeyword);
 
-        }else{ // keyword가 파라미터에 없으면 전체리스트 나타나도록
+        } else { // keyword가 파라미터에 없으면 전체리스트 나타나도록
             modelAndView.addObject("boardList", searchService.findAll());
         }
         return modelAndView;
     }
-
 
 
     @GetMapping("/board/list")
@@ -83,6 +93,10 @@ public class BoardController {
     public String showBoardDetail(@PathVariable("id") Integer id, Model model) {
         BoardDto boardDto = boardService.findBoardById(id);
         model.addAttribute("board", boardDto);
+
+        List<CommentDto> commentList = commentService.findAll();
+        model.addAttribute("commentList", commentList);
+
         return "/board/boardDetail";
     }
 
