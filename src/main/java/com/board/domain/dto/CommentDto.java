@@ -9,8 +9,11 @@ public class CommentDto {
     private Integer board_id;
     private String content;
     private String username;
+
+    private String name;
     private Timestamp createdAt;
 // 게시판에 필요한 데이터를 저장하고 전송하기 위한 목적
+
 
     public Integer getId() {
         return id;
@@ -44,6 +47,14 @@ public class CommentDto {
         this.username = username;
     }
 
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
     public Timestamp getCreatedAt() {
         return createdAt;
     }
@@ -55,11 +66,13 @@ public class CommentDto {
     //   private을 했기 때문에
 //   댓글 id, 게시판 번호, 댓글 내용, 이름, 생성날짜를 주고 받아야 해서
 //   getter,setter생성
-    public CommentDto(Integer id, Integer board_id, String content, String username, Timestamp createdAt) {
+
+    public CommentDto(Integer id, Integer board_id, String content, String username, String name, Timestamp createdAt) {
         this.id = id;
         this.board_id = board_id;
         this.content = content;
         this.username = username;
+        this.name = name;
         this.createdAt = createdAt;
     }
 }

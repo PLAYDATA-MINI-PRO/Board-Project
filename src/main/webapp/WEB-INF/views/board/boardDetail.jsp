@@ -34,6 +34,7 @@
             </div>
             <%-- 사용자명은 세션에서 가져옵니다 --%>
             <input type="hidden" name="username" value="<%= session.getAttribute("username") %>">
+            <input type="hidden" name="name" value="<%= session.getAttribute("name") %>">
             <button type="submit" class="btn btn-primary">등록</button>
     </form>
     <% } else { %>
@@ -51,7 +52,7 @@
         <tbody>
         <c:forEach items="${commentList}" var="comment">
             <tr>
-                <td>${comment.username}</td>
+                <td>${comment.name}</td>
                 <td>${comment.content}</td>
             </tr>
         </c:forEach>

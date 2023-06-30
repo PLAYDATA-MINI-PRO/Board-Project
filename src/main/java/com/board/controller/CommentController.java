@@ -38,10 +38,11 @@ public class CommentController {
             @PathVariable("id") Integer bid,
             @RequestParam("content") String content,
             @RequestParam("username") String username,
+            @RequestParam("name") String name,
             HttpSession session
     ) {
         // TODO insert 서비스 에다가 만들거다.
-        if (commentService.addComment(bid, content, username) != 0)
+        if (commentService.addComment(bid, content, username, name) != 0)
             mav.setViewName("redirect:/board/" + bid);
         else {
             mav.setViewName("redirect:/board");
@@ -49,5 +50,4 @@ public class CommentController {
         }
         return mav;
     }
-
 }

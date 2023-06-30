@@ -14,9 +14,9 @@ public class CommentService {
         this.commentDao = commentDao;
     }
 
-    public int addComment(Integer boardId, String content, String username) {
+    public int addComment(Integer boardId, String content, String username, String name) {
         // CommentDao를 사용하여 댓글 추가
-        return commentDao.insert(boardId, content, username);
+        return commentDao.insert(boardId, content, username, name);
 
     }
 
