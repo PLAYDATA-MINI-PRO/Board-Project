@@ -19,7 +19,7 @@ public class SearchDao {
         String sql = "select\n" +
                 "    u.username,\n" +
                 "    u.name ,\n" +
-                "    u.id,\n" +
+                "    b.id,\n" +
                 "    b.title,\n" +
                 "    b.content,\n" +
                 "    b.category, \n" +
@@ -37,7 +37,7 @@ public class SearchDao {
         String sql = "select\n" +
                 "    u.username,\n" +
                 "    u.name ,\n" +
-                "    u.id,\n" +
+                "    b.id,\n" +
                 "    b.title,\n" +
                 "    b.content,\n" +
                 "    b.category, \n" +
@@ -55,8 +55,9 @@ public class SearchDao {
         // 검색조건(condition)과 keyword가 일치하는게 있으면 가져오도록 함.
 
         String keywordPattern = "%"+keyword+"%";
+//        System.out.println(keyword);
+//        System.out.println(sql);
         List<SearchDto> SearchDto = jdbcTemplate.query(sql, getSearchDtoRowMapper(), keywordPattern);
-
         return SearchDto;
     }
 
@@ -69,7 +70,7 @@ public class SearchDao {
                         rs.getString("title"),
                         rs.getString("content"),
                         rs.getString("category"),
-                        rs.getString("create_at")
+                        rs.getTimestamp("create_at")
                 );
     }
 

@@ -10,10 +10,10 @@
     <% String condition = request.getParameter("condition"); %>
     <form method="get" action="/search">
         <select name="condition">
-            <option value="title"<% if(condition != null && condition.equals("title")) { %>selected<% } %>>제목</option>
-            <option value="content"<% if(condition != null && condition.equals("content")) { %>selected<% } %>>내용</option>
+            <option value="b.title"<% if(condition != null && condition.equals("title")) { %>selected<% } %>>제목</option>
+            <option value="b.content"<% if(condition != null && condition.equals("content")) { %>selected<% } %>>내용</option>
             <option value="u.username"<% if(condition != null && condition.equals("u.username")) { %>selected<% } %>>아이디</option>
-            <option value="create_at"<% if(condition != null && condition.equals("create_at")) { %>selected<% } %>>작성날짜</option>
+            <option value="b.create_at"<% if(condition != null && condition.equals("create_at")) { %>selected<% } %>>작성날짜</option>
         </select>
 <%--  selected if문은 검색 조건 저장하려고 만듬    --%>
 <%-- null인 상태에서 equals() 메서드를 호출하면 오류가 발생하기 떄문에 condition != null 을 condition.equals("content") 보다

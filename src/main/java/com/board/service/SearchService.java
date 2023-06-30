@@ -8,6 +8,7 @@ import java.util.List;
 
 @Service
 public class SearchService {
+//    private final SearchDao searchDao;
     private final SearchDao searchDao;
 
     public SearchService(SearchDao searchDao) {
