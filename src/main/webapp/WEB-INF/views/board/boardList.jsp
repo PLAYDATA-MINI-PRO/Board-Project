@@ -17,7 +17,7 @@
                 <div class="card">
                     <div class="card-body">
                         <h5 class="card-title">${board.title}</h5>
-                        <p class="card-text">작성자: ${board.username}</p>
+                        <p class="card-text">작성자: ${board.name}</p>
                         <p class="card-text">작성일: ${board.createAt}</p>
                         <a href="#" class="btn btn-primary" onclick="viewBoard(${board.id})">자세히 보기</a>
                     </div>

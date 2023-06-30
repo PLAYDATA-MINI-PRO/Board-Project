@@ -50,7 +50,7 @@
         <% if (session.getAttribute("username") == null) { %>
         <h1 class="display-4">방문자님 환영합니다!</h1>
         <% } else { %>
-        <h1 class="display-4"><%=session.getAttribute("username")%>님 환영합니다!</h1>
+        <h1 class="display-4"><%=session.getAttribute("name")%>님 환영합니다!</h1>
         <% } %>
         <p class="lead">게시판 프로그램을 사용해보세요.</p>
     </div>
