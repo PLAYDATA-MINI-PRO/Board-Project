@@ -15,11 +15,15 @@
     </div>
 
     <div class="mt-4">
+        <%-- Display the edit and delete buttons only if the logged-in user is the author --%>
+        <% if (session.getAttribute("username") != null) { %>
         <button class="btn btn-primary" onclick="editBoard(${board.id})">수정</button>
         <button class="btn btn-danger" onclick="deleteBoard(${board.id})">삭제</button>
+        <% } %>
         <button class="btn btn-primary" onclick="main(${board.id})">메인 페이지</button>
     </div>
 </div>
+
 <div class="container mt-4">
     <%-- Only display the comment form if the user is logged in --%>
     <% if (session.getAttribute("username") != null) { %>

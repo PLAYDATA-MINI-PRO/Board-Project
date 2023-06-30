@@ -93,6 +93,7 @@ public class BoardController {
     public String showBoardDetail(@PathVariable("id") Integer id, Model model) {
         BoardDto boardDto = boardService.findBoardById(id);
         model.addAttribute("board", boardDto);
+        model.addAttribute("boardId", boardDto.getUsername());
 
         List<CommentDto> commentList = commentService.findAll();
         model.addAttribute("commentList", commentList);

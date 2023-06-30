@@ -47,7 +47,11 @@
 
 <div class="container mt-4">
     <div class="jumbotron">
-        <h1 class="display-4">환영합니다!</h1>
+        <% if (session.getAttribute("username") == null) { %>
+        <h1 class="display-4">방문자님 환영합니다!</h1>
+        <% } else { %>
+        <h1 class="display-4"><%=session.getAttribute("username")%>님 환영합니다!</h1>
+        <% } %>
         <p class="lead">게시판 프로그램을 사용해보세요.</p>
     </div>
 </div>
@@ -57,15 +61,23 @@
     <form method="get" action="/main" class="form-inline text-center">
         <div class="form-group">
             <select name="condition" class="form-control" style="width: 110px;height: 40px;">
-                <option value="b.title" <%= (condition != null && condition.equals("b.title")) ? "selected" : "" %>>제목</option>
-                <option value="b.content" <%= (condition != null && condition.equals("b.content")) ? "selected" : "" %>>내용</option>
-                <option value="u.username" <%= (condition != null && condition.equals("u.username")) ? "selected" : "" %>>아이디</option>
-                <option value="b.create_at" <%= (condition != null && condition.equals("b.create_at")) ? "selected" : "" %>>작성날짜</option>
+                <option value="b.title" <%= (condition != null && condition.equals("b.title")) ? "selected" : "" %>>제목
+                </option>
+                <option value="b.content" <%= (condition != null && condition.equals("b.content")) ? "selected" : "" %>>
+                    내용
+                </option>
+                <option value="u.username" <%= (condition != null && condition.equals("u.username")) ? "selected" : "" %>>
+                    아이디
+                </option>
+                <option value="b.create_at" <%= (condition != null && condition.equals("b.create_at")) ? "selected" : "" %>>
+                    작성날짜
+                </option>
             </select>
         </div>
         <div class="form-group">
             <div class="input-group">
-                <input type="text" name="keyword" placeholder="검색할 내용을 입력하세요" value="${param.keyword}" class="form-control" style="height: 40px; width: 210px;">
+                <input type="text" name="keyword" placeholder="검색할 내용을 입력하세요" value="${param.keyword}"
+                       class="form-control" style="height: 40px; width: 210px;">
                 <div class="input-group-append">
                     <button type="submit" class="btn btn-primary">검색</button>
                 </div>
