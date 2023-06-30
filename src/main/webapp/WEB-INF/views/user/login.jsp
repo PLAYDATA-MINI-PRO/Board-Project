@@ -49,7 +49,7 @@
         input[type="submit"] {
             width: 100%;
             padding: 10px;
-            background-color: #4CAF50;
+            background-color: #007bff; /* Change button color to blue */
             color: #ffffff;
             border: none;
             border-radius: 3px;
@@ -57,7 +57,7 @@
         }
 
         input[type="submit"]:hover {
-            background-color: #45a049;
+            background-color: #0056b3; /* Change hover color to a darker shade of blue */
         }
     </style>
 </head>
