@@ -76,7 +76,7 @@ public class BoardController {
 
         BoardDto boardDto = boardService.findBoardById(id);
         model.addAttribute("board", boardDto);
-
+        model.addAttribute("boardId", boardDto);
         List<CommentDto> commentList = commentService.findAll();
         model.addAttribute("commentList", commentList);
 
