@@ -26,19 +26,20 @@ public class BoardDao {
                         rs.getString("category"),
                         rs.getString("content"),
                         rs.getString("username"),
+                        rs.getString("name"),
                         rs.getTimestamp("create_at")
                 );
     }
 
     public List<BoardDto> findAll() {
-        String sql = "SELECT b.id, b.title, b.category, b.username, b.content, b.create_at FROM board.board AS b ORDER BY b.create_at DESC";
+        String sql = "SELECT b.id, b.title, b.category, b.username, b.name, b.content, b.create_at FROM board.board AS b ORDER BY b.create_at DESC";
         List<BoardDto> boardDtoList = jdbcTemplate.query(sql, getBoardDtoRowMapper());
         return boardDtoList;
     }
 
-    public int insert(String title, String category, String content, String username) {
-        String sql = "insert into board(title, category, content, username) VALUES (?,?,?,?)";
-        return jdbcTemplate.update(sql, title, category, username, content);
+    public int insert(String title, String category, String content, String username, String name) {
+        String sql = "insert into board(title, category, content, username, name) VALUES (?,?,?,?,?)";
+        return jdbcTemplate.update(sql, title, category, username, content, name);
     }
 
     public BoardDto findBoardById(Integer id) {

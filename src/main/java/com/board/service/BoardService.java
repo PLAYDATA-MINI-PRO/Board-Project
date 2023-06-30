@@ -20,8 +20,8 @@ public class BoardService {
         return boardDao.findAll();
     }
 
-    public int insert(String title, String category, String content, String username) {
-        return boardDao.insert(title, category, username, content);
+    public int insert(String title, String category, String content, String username, String name) {
+        return boardDao.insert(title, category, username, content, name);
     }
 
     public BoardDto findBoardById(Integer id) {

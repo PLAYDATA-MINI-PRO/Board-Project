@@ -6,7 +6,7 @@
 </head>
 <body>
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
-    <a class="navbar-brand" href="#">게시판 프로그램</a>
+    <a class="navbar-brand" href="/main">게시판 프로그램</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
             aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
@@ -54,6 +54,7 @@
                 </div>
                 <%-- 사용자명은 세션에서 가져옵니다 --%>
                 <input type="hidden" name="username" value="<%= session.getAttribute("username") %>">
+                <input type="hidden" name="name" value="<%= session.getAttribute("name") %>">
                 <button type="submit" class="btn btn-primary">등록</button>
             </form>
             <% } else { %>

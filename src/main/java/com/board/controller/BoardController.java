@@ -22,29 +22,24 @@ public class BoardController {
 
     // 의존성 주입
 
-
-    // BoardService 를 주입받기 위한 생성자
-
     private final BoardService boardService;
     private final SearchService searchService;
 
     private final CommentService commentService;
 
+    // Service 를 주입받기 위한 생성자
     public BoardController(BoardService boardService, SearchService searchService, CommentService commentService) {
         this.boardService = boardService;
         this.searchService = searchService;
         this.commentService = commentService;
     }
 
-    // BoardService 를 주입받기 위한 생성자
 
-
-    // GET 요청을 /board 경로로 처리
     @GetMapping("/main")
     public ModelAndView showMain(
             @RequestParam(value = "keyword", required = false) String keyword,
-            @RequestParam(value = "condition", required = false) String condition,
-            @RequestParam(value = "sort", required = false) String sort
+            @RequestParam(value = "condition", required = false) String condition
+//            @RequestParam(value = "sort", required = false) String sort
     ) {
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.setViewName("/board/main"); // search.jsp로 연결
@@ -91,6 +86,8 @@ public class BoardController {
 
     @GetMapping("/board/{id}")
     public String showBoardDetail(@PathVariable("id") Integer id, Model model) {
+
+
         BoardDto boardDto = boardService.findBoardById(id);
         model.addAttribute("board", boardDto);
         model.addAttribute("boardId", boardDto.getUsername());
@@ -115,6 +112,7 @@ public class BoardController {
             @RequestParam("category") String category,
             @RequestParam("content") String content,
             @RequestParam("username") String username,
+            @RequestParam("name") String name,
             HttpSession session
     ) {
         ModelAndView mav = new ModelAndView();
@@ -122,7 +120,7 @@ public class BoardController {
         // 요청 파라미터 값들을 문자열로 받고,
         // 문자열로 받은 값들과 세션에서 가져온 사용자명을 boardService.insert 메서드의 요소로 넘겨주고 데이터베이스에 insert
         // 반환값이 0이 아닌 경우에 게시판 목록을 보여주는 /board 경로로 이동
-        if (boardService.insert(title, category, content, username) != 0) {
+        if (boardService.insert(title, category, content, username, name) != 0) {
             mav.setViewName("redirect:/main");
         }
 
