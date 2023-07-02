@@ -23,7 +23,6 @@ public class SearchDao {
                 "    b.id,\n" +
                 "    b.title,\n" +
                 "    b.content,\n" +
-                "    b.category, \n" +
                 "    b.create_at \n" +
                 "from board.board as b\n" +
                 "inner join board.user as u\n" +
@@ -41,7 +40,6 @@ public class SearchDao {
                 "    b.id,\n" +
                 "    b.title,\n" +
                 "    b.content,\n" +
-                "    b.category, \n" +
                 "    b.create_at \n" +
                 "from board.board as b\n" +
                 "inner join board.user as u\n" +
@@ -70,7 +68,6 @@ public class SearchDao {
                         rs.getInt("id"),
                         rs.getString("title"),
                         rs.getString("content"),
-                        rs.getString("category"),
                         rs.getTimestamp("create_at")
                 );
     }

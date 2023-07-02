@@ -17,10 +17,10 @@
             <label for="title">제목</label>
             <input type="text" class="form-control" id="title" name="title" value="${board.title}">
         </div>
-        <div class="form-group">
-            <label for="category">카테고리</label>
-            <input type="text" class="form-control" id="category" name="category" value="${board.category}">
-        </div>
+        <%--        <div class="form-group">--%>
+        <%--            <label for="category">카테고리</label>--%>
+        <%--            <input type="text" class="form-control" id="category" name="category" value="${board.category}">--%>
+        <%--        </div>--%>
         <div class="form-group">
             <label for="content">내용</label>
             <textarea class="form-control" id="content" name="content" rows="5">${board.content}</textarea>

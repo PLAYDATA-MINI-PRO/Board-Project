@@ -23,7 +23,6 @@ public class BoardDao {
                 new BoardDto(
                         rs.getInt("id"),
                         rs.getString("title"),
-                        rs.getString("category"),
                         rs.getString("content"),
                         rs.getString("username"),
                         rs.getString("name"),
@@ -32,31 +31,32 @@ public class BoardDao {
     }
 
     public List<BoardDto> findAll() {
-        String sql = "SELECT b.id, b.title, b.category, b.username, b.name, b.content, b.create_at FROM board.board AS b ORDER BY b.create_at DESC";
+        String sql = "SELECT b.id, b.title, b.username, b.name, b.content, b.create_at FROM board.board AS b ORDER BY b.create_at DESC";
         List<BoardDto> boardDtoList = jdbcTemplate.query(sql, getBoardDtoRowMapper());
         return boardDtoList;
     }
 
-    public int insert(String title, String category, String content, String username, String name) {
-        String sql = "insert into board(title, category, content, username, name) VALUES (?,?,?,?,?)";
-        return jdbcTemplate.update(sql, title, category, username, content, name);
+    public int insert(String title, String content, String username, String name) {
+        String sql = "insert into board(title, content, username, name) VALUES (?,?,?,?)";
+        return jdbcTemplate.update(sql, title, username, content, name);
     }
 
     public BoardDto findBoardById(Integer id) {
-        String sql = "select b.id, b.title, b.category, b.username, b.name, b.content, b.create_at from board.board as b where id = ?";
-        System.out.println(sql);
-        System.out.println(id);
+        String sql = "select b.id, b.title, b.username, b.name, b.content, b.create_at from board.board as b where id = ?";
         return jdbcTemplate.queryForObject(sql, getBoardDtoRowMapper(), id);
 
     }
 
-    public int update(String title, String category, String content, Integer id) {
-        String sql = "update board set title = ?, category = ?, content = ? where id = ?";
-        return jdbcTemplate.update(sql, title, category, content, id);
+    public int update(String title, String content, Integer id) {
+        String sql = "update board set title = ?, content = ? where id = ?";
+        return jdbcTemplate.update(sql, title, content, id);
     }
 
     public int delete(Integer id) {
-        String sql = "delete from board where id = ?";
+        String sql = "DELETE c, b\n" +
+                "FROM comment c\n" +
+                "JOIN board b ON c.board_id = b.id\n" +
+                "WHERE b.id = ?";
         return jdbcTemplate.update(sql, id);
     }
 }

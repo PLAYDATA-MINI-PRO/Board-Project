@@ -20,16 +20,16 @@ public class BoardService {
         return boardDao.findAll();
     }
 
-    public int insert(String title, String category, String content, String username, String name) {
-        return boardDao.insert(title, category, username, content, name);
+    public int insert(String title, String content, String username, String name) {
+        return boardDao.insert(title, username, content, name);
     }
 
     public BoardDto findBoardById(Integer id) {
         return boardDao.findBoardById(id);
     }
 
-    public int update(String title, String category, String content, Integer id) {
-        return boardDao.update(title, category, content, id);
+    public int update(String title, String content, Integer id) {
+        return boardDao.update(title, content, id);
     }
 
     public int delete(Integer id) {

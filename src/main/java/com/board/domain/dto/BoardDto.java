@@ -5,17 +5,15 @@ import java.sql.Timestamp;
 public class BoardDto {
     private Integer id;
     private String title;
-    private String category;
     private String content;
     private String username;
 
     private String name;
     private Timestamp createAt;
 
-    public BoardDto(Integer id, String title, String category, String content, String username, String name, Timestamp createAt) {
+    public BoardDto(Integer id, String title, String content, String username, String name, Timestamp createAt) {
         this.id = id;
         this.title = title;
-        this.category = category;
         this.content = content;
         this.username = username;
         this.name = name;
@@ -28,10 +26,6 @@ public class BoardDto {
 
     public String getTitle() {
         return title;
-    }
-
-    public String getCategory() {
-        return category;
     }
 
     public String getContent() {

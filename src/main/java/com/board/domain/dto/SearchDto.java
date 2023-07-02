@@ -8,8 +8,7 @@ public class SearchDto {
     private int id;
     private String title;
     private String content;
-    private String category;
-    private Timestamp createAt ;
+    private Timestamp createAt;
 
 //    toString 은 값을 제대로 받아오는지 확인하기 위해서 만듬
 //    @Override
@@ -65,13 +64,6 @@ public class SearchDto {
         this.content = content;
     }
 
-    public String getCategory() {
-        return category;
-    }
-
-    public void setCategory(String category) {
-        this.category = category;
-    }
 
     public Timestamp getCreateAt() {
         return createAt;
@@ -81,13 +73,12 @@ public class SearchDto {
         this.createAt = createAt;
     }
 
-    public SearchDto(String username, String name, int id, String title, String content, String category, Timestamp createAt) {
+    public SearchDto(String username, String name, int id, String title, String content, Timestamp createAt) {
         this.username = username;
         this.name = name;
         this.id = id;
         this.title = title;
         this.content = content;
-        this.category = category;
         this.createAt = createAt;
     }
 }

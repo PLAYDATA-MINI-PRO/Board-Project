@@ -85,7 +85,7 @@
         </div>
     </form>
 </div>
-<p class="mt-2 text-center" style="font-size: 13px; color: #999;">※작성날짜로 검색시 예시 -&gt; 0000-00-00 ※</p>
+<p class="mt-2 text-center" style="font-size: 13px; color: #999;">※ 작성날짜로 검색시 예시 -&gt; 0000-00-00 ※</p>
 
 
 <%@ include file="boardList.jsp" %>

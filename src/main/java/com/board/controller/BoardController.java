@@ -47,7 +47,6 @@ public class BoardController {
         if (keyword != null && !keyword.equals("")) {   // 파라미터 keyword가 null과 ""이 아닐 떄
             List<SearchDto> bykeyword = searchService.findByKeyword(keyword, condition); // keyword를 가지고 service로 전달
             modelAndView.addObject("boardList", bykeyword); // 받아온 값을 리퀘스트로 저장 전송
-            System.out.println(bykeyword);
 
         } else { // keyword가 파라미터에 없으면 전체리스트 나타나도록
             modelAndView.addObject("boardList", searchService.findAll());
@@ -94,7 +93,6 @@ public class BoardController {
     @PostMapping("/board/create")
     public ModelAndView boardInsert(
             @RequestParam("title") String title,
-            @RequestParam("category") String category,
             @RequestParam("content") String content,
             @RequestParam("username") String username,
             @RequestParam("name") String name,
@@ -105,7 +103,7 @@ public class BoardController {
         // 요청 파라미터 값들을 문자열로 받고,
         // 문자열로 받은 값들과 세션에서 가져온 사용자명을 boardService.insert 메서드의 요소로 넘겨주고 데이터베이스에 insert
         // 반환값이 0이 아닌 경우에 게시판 목록을 보여주는 /board 경로로 이동
-        if (boardService.insert(title, category, content, username, name) != 0) {
+        if (boardService.insert(title, content, username, name) != 0) {
             mav.setViewName("redirect:/main");
         }
 
@@ -117,10 +115,9 @@ public class BoardController {
     public ModelAndView boardUpdate(
             @RequestParam("id") Integer id,
             @RequestParam("title") String title,
-            @RequestParam("category") String category,
             @RequestParam("content") String content,
             ModelAndView mav) {
-        if (boardService.update(title, category, content, id) != 0) {
+        if (boardService.update(title, content, id) != 0) {
             mav.setViewName("redirect:/board/" + id);
         }
         return mav;
