@@ -7,7 +7,7 @@
     <div class="card">
         <div class="card-body">
             <h5 class="card-title">${board.title}</h5>
-            <p class="card-text">작성자: ${board.name}</p>
+            <p class="card-text">작성자: ${board.name} (${board.username})</p>
             <p class="card-text">작성일: ${board.createAt}</p>
             <hr>
             <p class="card-text">${board.content}</p>
